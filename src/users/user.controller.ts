@@ -80,6 +80,7 @@ export class UserController {
     @Request()
     req: Request & { user: { id: string } },
   ): Promise<string> {
+    console.log(req.user.id);
     return this.userService.deleteUser(req.user.id);
   }
 }
