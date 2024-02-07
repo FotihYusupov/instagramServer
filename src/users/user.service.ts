@@ -94,7 +94,11 @@ export class UserService {
   }
 
   async deleteUser(id: string): Promise<string> {
-    await this.userModel.findByIdAndDelete(id);
+    await this.userModel.findByIdAndUpdate(id, {
+      username: 'Deleted',
+      lastName: 'Account',
+      password: 'DeletedAccount',
+    });
     return 'User deleted';
   }
 }
