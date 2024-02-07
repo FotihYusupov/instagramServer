@@ -50,12 +50,12 @@ export class UserController {
     return this.userService.getUser(userId);
   }
 
-  @Post('/sign-up')
+  @Post('sign-up')
   async createUser(@Body() userDto: CreateUserDto): Promise<string> {
     return this.userService.signUp(userDto);
   }
 
-  @Post('/log-in')
+  @Post('log-in')
   async loginUser(
     @Body() user: { username: string; password: string },
   ): Promise<string> {
@@ -63,7 +63,7 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard)
-  @Put('/edit')
+  @Put('edit')
   @UseInterceptors(FileInterceptor('img'))
   async updateProfile(
     @Body()
@@ -75,9 +75,8 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard)
-  @Put('/delete')
+  @Put('delete')
   async deleteUser(
-    @Body()
     @Request()
     req: Request & { user: { id: string } },
   ): Promise<string> {
